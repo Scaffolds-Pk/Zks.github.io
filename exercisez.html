@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercisez</title>
+</head>
+<body>
+    <div class="todoapp">
+        <div class="title">TODO LIST</div>
+        <div class="todofrom">
+            <input type="text" class="todoinput" placeholder="Please input your todo">
+            <div class="todobutton">add todo</div>
+        </div>
+        <div class="item comz">
+            <label class="checkbox-container">
+                <input type="checkbox" class="checkboxe1" checked>
+                <span class="name">Ate</span>
+            </label>
+            <div class="del">del</div>
+        </div>
+        <div class="item">
+            <label class="checkbox-container">
+                <input type="checkbox" class="checkboxe1">
+                <span class="name">Drank</span>
+            </label>
+            <div class="del">del</div>
+        </div>
+        <div class="item">
+            <label class="checkbox-container">
+                <input type="checkbox" class="checkboxe1">
+                <span class="name">Play</span>
+            </label>
+            <div class="del">del</div>
+        </div>
+        <div class="item">
+            <label class="checkbox-container">
+                <input type="checkbox" class="checkboxe1">
+                <span class="name">Ran</span>
+            </label>
+            <div class="del">del</div>
+        </div>
+        <div class="item">
+            <label class="checkbox-container">
+                <input type="checkbox" class="checkboxe1">
+                <span class="name">Sports</span>
+            </label>
+            <div class="del">del</div>
+        </div>
+    </div>
+    <style>
+        .comz{
+            text-decoration: line-through;
+            opacity: 0.6; /* 调整透明度以更好地显示删除线 */
+        }
+        .todofrom{
+            display: flex;
+            margin-top: 20px;
+        }
+        .todoinput{
+            padding-left: 15px;
+            border: 1px solid rgb(0, 0, 0);
+            outline: none;
+            width: 80%;
+            height: 48px;
+            border-radius: 20px 0 0 20px;
+            margin-bottom: 20px;
+        }
+        .todobutton{
+            width: 100px;
+            height: 52px;
+            line-height: 52px;
+            border-radius: 0 20px 20px 0;
+            text-align: center;
+            background: linear-gradient(
+                to right,
+                rgb(113, 65, 168),
+                rgba(44, 114, 251, 1),
+                rgb(62, 62, 186)
+            );
+            color: #ffff;
+            cursor: pointer;
+            user-select: none;
+        }
+        body{
+            background: linear-gradient(
+                to right,
+                rgb(113, 65, 168),
+                rgba(44, 114, 251, 1)
+            );
+        }
+        .todoapp{
+            width: 98%;
+            height: 500px;
+            padding-top: 20px; /*内边距*/
+            box-sizing: border-box;
+            background-color: #ffff;
+            box-sizing: border-box;
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-left: 1%;
+        }
+        .title{
+            font-size: 30px;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 20px; /*外边距*/
+        }
+        .item {
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 80%;
+            height: 50px;
+            margin: 8px auto;
+            padding: 16px;
+            border-radius: 20px;
+            box-shadow: rgba(149,157,165,0.2) 0px 0px 20px;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .checkboxe1 {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .del {
+            margin-left: auto;
+            color:red
+        }
+    </style>
+</body>
+</html>
