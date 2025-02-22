@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="image/a.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YourGifts</title>
+    <style>
+        html {
+            scroll-behavior: smooth; /* 平滑滚动 */
+        }
+
+        body {
+            background: linear-gradient(
+                    to right,
+                    rgb(113, 65, 168),
+                    rgba(44, 114, 251, 1),
+                    rgb(127, 255, 212)
+            );
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative; /* 为了让子元素能相对于 body 定位 */
+        }
+
+        .zyh {
+            width: 88%;
+            height: 68%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            border-radius: 30px;
+            box-shadow: 10px 10px 20px 5px orchid;
+            transition: transform 0.5s, box-shadow 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .zyh:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .wuziqi {
+            width: 88%;
+            height: 68%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            border-radius: 30px;
+            box-shadow: 10px 10px 20px 5px cornflowerblue;
+            transition: transform 0.3s, box-shadow 0.3s;
+            /* 设置为相对定位，方便内部元素绝对定位 */
+            position: relative;
+            /* 溢出隐藏，避免图片超出盒子 */
+            overflow: hidden;
+        }
+
+        .wuziqi:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .imh {
+            width: 125px;
+            height: 125px;
+            margin: 20px;
+            opacity: 0;
+            transition: opacity 1s;
+            /* 绝对定位，方便调整位置 */
+            position: absolute;
+            bottom: 10%; /* 定位到盒子下半部分 */
+        }
+
+        /* 图片合并消除动画 */
+        @keyframes mergeAndFade {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(0.5);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* 最终文字样式 */
+        .final-text {
+            font-size: 24px;
+            color: cornflowerblue;
+            opacity: 0;
+            transition: opacity 1s;
+            /* 绝对定位，方便居中显示在下半部分 */
+            position: absolute;
+            top: 55%; /* 定位到盒子下半部分 */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .final-textzyh {
+            font-size: 25px;
+            color: orchid;
+            opacity: 0;
+            transition: opacity 1s;
+            /* 绝对定位，方便居中显示在下半部分 */
+            position: absolute;
+            top: 60%; /* 定位到盒子下半部分 */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* 站长信息样式 */
+        .webmaster-info {
+            font-size: 1px;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+<!-- 站长信息元素 -->
+<div class="webmaster-info">站长：道源君 - Tao</div>
+<script>
+    // 弹出输入框获取访问号
+    const visitnum = prompt("访问号：");
+
+    function wuziqi() {
+        // 创建一个 div 元素
+        const divElement = document.createElement('div');
+        // 为 div 元素添加类名
+        divElement.classList.add('wuziqi');
+        // 设置要显示的文本
+        const text = "巫梓淇,I feel you are cool and beautiful!But please don't copy(抄) my answer,can you?" +
+            "because my answer is the not best.I think you are smarter than me.I entreat(求) you." +
+            "Then your real gift is coming!";
+        document.body.appendChild(divElement);
+
+        let index = 0;
+        const typingInterval = setInterval(() => {
+            if (index < text.length) {
+                // 逐个字符添加到 div 中
+                divElement.textContent += text[index];
+                index++;
+            } else {
+                // 当所有字符都显示完后，清除定时器
+                clearInterval(typingInterval);
+                // 开始显示图片
+                wuziqigift(divElement);
+            }
+        }, 100); // 每个字符显示的间隔时间，单位为毫秒
+    }
+
+    function wuziqigift(box) {
+        const imgUrls = [
+            "image/so%20(1).png",
+            "image/so%20(2).png",
+            "image/so%20(3).png"
+        ];
+        const imgs = [];
+
+        // 创建并添加图片元素到盒子内部
+        for (let i = 0; i < imgUrls.length; i++) {
+            const img = document.createElement('img');
+            img.src = imgUrls[i];
+            img.classList.add('imh');
+            // 均匀分布图片
+            img.style.left = `${(i * 25) + 10}%`;
+            box.appendChild(img);
+            imgs.push(img);
+        }
+
+        // 依次显示图片
+        let imgIndex = 0;
+        const showImgInterval = setInterval(() => {
+            if (imgIndex < imgs.length) {
+                imgs[imgIndex].style.opacity = 1;
+                imgIndex++;
+            } else {
+                clearInterval(showImgInterval);
+                // 图片全部显示后，开始合并消除特效
+                setTimeout(() => {
+                    mergeAndFadeImages(imgs, box);
+                }, 1000);
+            }
+        }, 1000);
+    }
+
+    function mergeAndFadeImages(imgs, box) {
+        imgs.forEach(img => {
+            img.style.animation = "mergeAndFade 1s forwards";
+        });
+
+        // 图片消除后显示最终文字
+        setTimeout(() => {
+            const finalText = document.createElement('p');
+            finalText.textContent = "祝你学业永进不退，好事成双带回家";
+            finalText.classList.add('final-text');
+            box.appendChild(finalText);
+            setTimeout(() => {
+                finalText.style.opacity = 1;
+            }, 100);
+        }, 1000);
+    }
+
+    function zyh() {
+        // 创建一个 div 元素
+        const divElement = document.createElement('div');
+        // 为 div 元素添加类名
+        divElement.classList.add('zyh');
+        // 设置要显示的文本
+        const text = "张宇涵, \n" + "初逢未料是惊鸿，乍喜浑如沐煦风。" +
+            "星河倾落眸间璨，心海翻澜亘古同。" +
+            "愿共朝晖书岁序，相携暮色印归踪。" +
+            "人间何须千帆过，一棹烟波尽此生。";
+        document.body.appendChild(divElement);
+
+        let index = 0;
+        const typingInterval = setInterval(() => {
+            if (index < text.length) {
+                // 逐个字符添加到 div 中
+                divElement.textContent += text[index];
+                index++;
+            } else {
+                // 当所有字符都显示完后，清除定时器
+                clearInterval(typingInterval);
+                // 开始显示图片
+                zyhgift(divElement);
+            }
+        }, 100); // 每个字符显示的间隔时间，单位为毫秒
+    }
+
+    function zyhgift(box) {
+        const imgUrls = [
+            "image/so%20(4).png",
+            "image/so%20(5).png",
+            "image/so%20(6).png"
+        ];
+        const imgs = [];
+
+        // 创建并添加图片元素到盒子内部
+        for (let i = 0; i < imgUrls.length; i++) {
+            const img = document.createElement('img');
+            img.src = imgUrls[i];
+            img.classList.add('imh');
+            // 均匀分布图片
+            img.style.left = `${(i * 25) + 10}%`;
+            box.appendChild(img);
+            imgs.push(img);
+        }
+
+        // 依次显示图片
+        let imgIndex = 0;
+        const showImgInterval = setInterval(() => {
+            if (imgIndex < imgs.length) {
+                imgs[imgIndex].style.opacity = 1;
+                imgIndex++;
+            } else {
+                clearInterval(showImgInterval);
+                // 图片全部显示后，开始合并消除特效
+                setTimeout(() => {
+                    merges(imgs, box);
+                }, 1000);
+            }
+        }, 1000);
+    }
+
+    function merges(imgs, box) {
+        imgs.forEach(img => {
+            img.style.animation = "mergeAndFade 1s forwards";
+        });
+
+        // 图片消除后显示最终文字
+        setTimeout(() => {
+            const finalTextz = document.createElement('p');
+            finalTextz.textContent = "祝你好事成双，事事如意，毕业后考上好中学";
+            finalTextz.classList.add('final-textzyh');
+            box.appendChild(finalTextz);
+            setTimeout(() => {
+                finalTextz.style.opacity = 1;
+            }, 100);
+        }, 1000);
+    }
+
+    // 检查访问号是否为 3333
+    if (visitnum === '2314') {
+        wuziqi();
+    } else if (visitnum === '2315') {
+        zyh()
+    }
+</script>
+</body>
+
+</html>
